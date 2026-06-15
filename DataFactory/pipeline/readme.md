@@ -1,0 +1,1 @@
+vincular azure Data Factory ao git
