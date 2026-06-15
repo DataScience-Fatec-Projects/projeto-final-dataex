@@ -1,0 +1,1 @@
+cria tabelas e insuma com dados fakes
