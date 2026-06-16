@@ -11,9 +11,13 @@ fake = Faker("pt_BR")
 
 conn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};'
-    'SERVER=(localdb)\\MSSQLLocalDB;'
+    'SERVER=tcp:sql-fatec-log.database.windows.net,1433;'
     'DATABASE=FatecLog;'
-    'Trusted_Connection=yes;'
+    'UID=fatec;'
+    'PWD=Ftc@2026;'
+    'Encrypt=yes;'
+    'TrustServerCertificate=no;'
+    'Connection Timeout=30;'
 )
 
 cursor = conn.cursor()
