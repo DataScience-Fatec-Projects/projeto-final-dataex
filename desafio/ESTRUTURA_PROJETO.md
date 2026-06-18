@@ -129,7 +129,38 @@ Processo de **Extração → Limpeza/Padronização → Carga** (em M, SQL ou Py
 **Arquiteturas de referência:**
 - **Power BI Only:** `DB → Power Query (ETL) → Power BI`
 - **Data Warehouse:** `DB → ETL (SP/Python/Notebooks) → DW → Power BI`
-- **Lakehouse:** `DB → ELT (ADF/Glue) → Lake → Bronze/Silver/Gold → Power BI`
+- **Lakehouse:** `DB → ELT (ADF/Glue) → Lake → Bronze/Silver/Gold → Power BI` ← **adotada**
+
+---
+
+## 6.1 Arquitetura Adotada — Lakehouse na nuvem Microsoft Azure
+
+Para a FatecLog seguimos **exatamente** o padrão **Lakehouse (medalhão)** em nuvem Azure,
+do banco transacional até o consumo no Power BI:
+
+```
+                                ┌─────────────────────────────────────────────┐
+                                │                  Databricks                  │
+ SQL DB ──> Data Factory ──> Data Lake ──>  Bronze  ─>  Silver  ─>   Gold  ──> Power BI ──> Info
+(FatecLog)  (Ingestão/      (Landing zone   (dados    (dados      (dados pra
+   ▲         Orquestração)    / container)   brutos)  padronizados) consumo)
+   │                              │ Access Connector
+ dados                           └──────────── pipeline ────────────►
+```
+
+| Componente do diagrama | Tecnologia | Papel | Artefato neste repositório |
+|------------------------|------------|-------|----------------------------|
+| **SQL DB** | Azure SQL Database (`sql-fatec-log` / `FatecLog`) | Origem transacional (OLTP) | [`database_scripts/01-create_transacional(OLTP).sql`](../database_scripts/01-create_transacional(OLTP).sql) · [`02-gerador_dados.py`](../database_scripts/02-gerador_dados.py) |
+| **Data Factory** | Azure Data Factory | Ingestão e orquestração (copy → parquet) | [`DataFactory/pipeline/`](../DataFactory/pipeline/) |
+| **Data Lake** | ADLS Gen2 — container `landing` (`safateclog`) | Landing zone dos `.parquet` | `abfss://landing@safateclog.dfs.core.windows.net/fatec-log/` |
+| **Bronze** | Databricks + Delta Lake | Dados brutos + metadados de ingestão | [`database_scripts/jupyter/bronze.ipynb`](../database_scripts/jupyter/bronze.ipynb) |
+| **Silver** | Databricks + Delta Lake | Dados limpos e padronizados | [`database_scripts/jupyter/silver.ipynb`](../database_scripts/jupyter/silver.ipynb) |
+| **Gold** | Databricks + Delta Lake | Star Schema pronto para consumo | [`database_scripts/jupyter/gold.ipynb`](../database_scripts/jupyter/gold.ipynb) |
+| **Power BI** | Power BI Desktop | Visuais, medidas DAX e storytelling | `.pbix` (entrega final) |
+
+> A conexão Data Lake → Databricks usa um **Access Connector** (identidade gerenciada)
+> para ler o container `landing`. O fluxo completo (SQL DB → … → Power BI) roda como um
+> único **pipeline** de ponta a ponta.
 
 ---
 
