@@ -1,18 +1,3 @@
-relationship 50f9d414-7f3c-4790-bb13-369646acb708
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_cliente.data_cadastro
-	toColumn: LocalDateTable_de6a7627-f842-42a8-bf7c-99b7666163bb.Date
-
-relationship a47e60aa-5e9b-437f-a83d-1ab5cefc5bc0
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_data.data_completa
-	toColumn: LocalDateTable_90d46b0c-d7ec-438c-969d-7cb25511b389.Date
-
-relationship e457590e-a9e0-4d7e-8faa-52ee2b0b11e5
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_motorista.data_admissao
-	toColumn: LocalDateTable_c8f2d441-f5c8-4e64-9228-c3acb5dc9379.Date
-
 relationship AutoDetected_479f70b3-da48-43df-9199-31d5a7dd3aa7
 	fromColumn: fato_entrega.sk_centro
 	toColumn: dim_centro.sk_centro
@@ -37,3 +22,11 @@ relationship AutoDetected_641157e0-3dd2-4f5d-be0b-cbc175cb8c37
 	fromColumn: fato_entrega.sk_veiculo
 	toColumn: dim_veiculo.sk_veiculo
 
+relationship c1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b01
+	fromColumn: fato_entrega.sk_data_saida
+	toColumn: dim_data.sk_data
+
+relationship c1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b02
+	isActive: false
+	fromColumn: fato_entrega.sk_data_entrega
+	toColumn: dim_data.sk_data

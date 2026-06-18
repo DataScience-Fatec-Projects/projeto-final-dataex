@@ -66,11 +66,6 @@ table dim_cliente
 		summarizeBy: none
 		sourceColumn: data_cadastro
 
-		variation Variation
-			isDefault
-			relationship: 50f9d414-7f3c-4790-bb13-369646acb708
-			defaultHierarchy: LocalDateTable_de6a7627-f842-42a8-bf7c-99b7666163bb.'Hierarquia de datas'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

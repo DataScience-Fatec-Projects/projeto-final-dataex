@@ -5,7 +5,7 @@ table dim_data
 		dataType: int64
 		formatString: 0
 		lineageTag: 0eafc12e-3ec3-431b-8a1d-32c869998804
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: sk_data
 
 		annotation SummarizationSetBy = Automatic
@@ -16,11 +16,6 @@ table dim_data
 		lineageTag: b3ded0d3-b58e-4308-8df5-d2effbb5cc4f
 		summarizeBy: none
 		sourceColumn: data_completa
-
-		variation Variation
-			isDefault
-			relationship: a47e60aa-5e9b-437f-a83d-1ab5cefc5bc0
-			defaultHierarchy: LocalDateTable_90d46b0c-d7ec-438c-969d-7cb25511b389.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 

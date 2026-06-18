@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation __PBI_TimeIntelligenceEnabled = 1
+annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["dim_centro","dim_cliente","dim_data","dim_motorista","dim_rota","dim_tipo_carga","dim_veiculo","fato_entrega"]
 
@@ -14,12 +14,8 @@ annotation PBI_ProTooling = ["DevMode"]
 
 ref table dim_centro
 ref table dim_cliente
-ref table DateTableTemplate_5b860a49-60e2-4280-85ac-714a0c4a6f31
-ref table LocalDateTable_de6a7627-f842-42a8-bf7c-99b7666163bb
 ref table dim_data
-ref table LocalDateTable_90d46b0c-d7ec-438c-969d-7cb25511b389
 ref table dim_motorista
-ref table LocalDateTable_c8f2d441-f5c8-4e64-9228-c3acb5dc9379
 ref table dim_rota
 ref table dim_tipo_carga
 ref table dim_veiculo
