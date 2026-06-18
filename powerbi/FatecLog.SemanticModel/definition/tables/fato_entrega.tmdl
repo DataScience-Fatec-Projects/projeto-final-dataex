@@ -203,6 +203,81 @@ table fato_entrega
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Quantidade total de entregas (linhas da fato).
+	measure 'Total de Entregas' = COUNTROWS(fato_entrega)
+		formatString: #,0
+		lineageTag: b0000000-0000-4000-8000-000000000001
+
+	/// Receita bruta de frete.
+	measure 'Faturamento Frete' = SUM(fato_entrega[valor_frete])
+		formatString: "R$ "#,0.00
+		lineageTag: b0000000-0000-4000-8000-000000000002
+
+	/// Custo total de combustível.
+	measure 'Custo Combustível' = SUM(fato_entrega[custo_combustivel])
+		formatString: "R$ "#,0.00
+		lineageTag: b0000000-0000-4000-8000-000000000003
+
+	/// Margem = frete - combustível.
+	measure 'Margem Total' = [Faturamento Frete] - [Custo Combustível]
+		formatString: "R$ "#,0.00
+		lineageTag: b0000000-0000-4000-8000-000000000004
+
+	/// Margem percentual sobre o faturamento de frete.
+	measure 'Margem %' = DIVIDE([Margem Total], [Faturamento Frete])
+		formatString: 0.0%
+		lineageTag: b0000000-0000-4000-8000-000000000005
+
+	/// Peso total transportado (kg).
+	measure 'Peso Total (kg)' = SUM(fato_entrega[peso_carga_kg])
+		formatString: #,0.0
+		lineageTag: b0000000-0000-4000-8000-000000000006
+
+	/// Quantidade total de volumes.
+	measure 'Volumes Total' = SUM(fato_entrega[quantidade_volumes])
+		formatString: #,0
+		lineageTag: b0000000-0000-4000-8000-000000000007
+
+	/// Distância total percorrida (km).
+	measure 'Distância Total (km)' = SUM(fato_entrega[distancia_km])
+		formatString: #,0
+		lineageTag: b0000000-0000-4000-8000-000000000008
+
+	/// % de entregas realizadas dentro do prazo (SLA).
+	measure '% No Prazo' = DIVIDE(SUM(fato_entrega[entrega_no_prazo]), COUNTROWS(fato_entrega))
+		formatString: 0.0%
+		lineageTag: b0000000-0000-4000-8000-000000000009
+
+	/// Quantidade de entregas fora do prazo.
+	measure 'Entregas Atrasadas' = CALCULATE(COUNTROWS(fato_entrega), fato_entrega[entrega_no_prazo] = 0)
+		formatString: #,0
+		lineageTag: b0000000-0000-4000-8000-000000000010
+
+	/// Atraso médio em horas (tempo real - tempo estimado).
+	measure 'Atraso Médio (h)' = AVERAGE(fato_entrega[atraso_horas])
+		formatString: #,0.0
+		lineageTag: b0000000-0000-4000-8000-000000000011
+
+	/// % de entregas com avaria registrada.
+	measure 'Taxa de Avaria' = DIVIDE(SUM(fato_entrega[avaria]), COUNTROWS(fato_entrega))
+		formatString: 0.0%
+		lineageTag: b0000000-0000-4000-8000-000000000012
+
+	/// Custo de combustível por quilômetro rodado.
+	measure 'Custo por km' = DIVIDE(SUM(fato_entrega[custo_combustivel]), SUM(fato_entrega[distancia_km]))
+		formatString: "R$ "#,0.00
+		lineageTag: b0000000-0000-4000-8000-000000000013
+
+	/// Custo de combustível por quilo transportado.
+	measure 'Custo por kg' = DIVIDE(SUM(fato_entrega[custo_combustivel]), SUM(fato_entrega[peso_carga_kg]))
+		formatString: "R$ "#,0.00
+		lineageTag: b0000000-0000-4000-8000-000000000014
+
+	/// Total de entregas medido pela data de entrega (usa o relacionamento inativo).
+	measure 'Entregas (por Data de Entrega)' = CALCULATE([Total de Entregas], USERELATIONSHIP(fato_entrega[sk_data_entrega], dim_data[sk_data]))
+		formatString: #,0
+		lineageTag: b0000000-0000-4000-8000-000000000015
+
 	partition fato_entrega = m
 		mode: import
 		source =
