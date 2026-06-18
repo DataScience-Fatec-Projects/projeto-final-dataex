@@ -1,0 +1,89 @@
+table dim_rota
+	lineageTag: 641ef285-6636-4b3b-90c2-bb2cd5f7b02a
+
+	column sk_rota
+		dataType: int64
+		formatString: 0
+		lineageTag: cb804346-9a6c-4c9f-87c0-af13342e925d
+		summarizeBy: none
+		sourceColumn: sk_rota
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_rota_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: 750d6e2b-b25d-4587-877a-5c18a86f9007
+		summarizeBy: none
+		sourceColumn: id_rota_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade_origem
+		dataType: string
+		lineageTag: 9dad44d8-168c-4de7-a404-a4c262f78496
+		summarizeBy: none
+		sourceColumn: cidade_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado_origem
+		dataType: string
+		lineageTag: 2a05d37b-2b88-4195-a767-0b3ac7bf6bd6
+		summarizeBy: none
+		sourceColumn: estado_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade_destino
+		dataType: string
+		lineageTag: 0fee6d7b-c93f-4dfe-963d-7c4804c2eece
+		summarizeBy: none
+		sourceColumn: cidade_destino
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado_destino
+		dataType: string
+		lineageTag: 11ef7f53-b9cb-4512-a3bd-de0d2f282a4f
+		summarizeBy: none
+		sourceColumn: estado_destino
+
+		annotation SummarizationSetBy = Automatic
+
+	column distancia_km
+		dataType: int64
+		formatString: 0
+		lineageTag: b51195a7-5e46-4069-8326-ce373676a195
+		summarizeBy: none
+		sourceColumn: distancia_km
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_distancia
+		dataType: string
+		lineageTag: a4dddc22-6014-4d8d-b20b-26ebe44b0b7d
+		summarizeBy: none
+		sourceColumn: faixa_distancia
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_rota
+		dataType: string
+		lineageTag: 9c4d35da-e058-49cb-97c4-9008f313cfc7
+		summarizeBy: none
+		sourceColumn: tipo_rota
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_rota = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_rota_Table = gold_Schema{[Name="dim_rota",Kind="Table"]}[Data]
+				in
+				    dim_rota_Table
+

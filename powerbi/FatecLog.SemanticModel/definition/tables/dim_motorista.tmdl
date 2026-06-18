@@ -1,0 +1,88 @@
+table dim_motorista
+	lineageTag: 4d7f5fe3-a7d5-4b11-8d31-9d1e7835f066
+
+	column sk_motorista
+		dataType: int64
+		formatString: 0
+		lineageTag: 1aea7e5c-ddfa-492a-9fa7-377434dd8500
+		summarizeBy: none
+		sourceColumn: sk_motorista
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_motorista_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: 96e69ff2-f590-48e6-8efd-5d9f3f0d557a
+		summarizeBy: sum
+		sourceColumn: id_motorista_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_motorista
+		dataType: string
+		lineageTag: 40e761a0-3540-488c-9799-24f1e103968b
+		summarizeBy: none
+		sourceColumn: nome_motorista
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: cbca1a1c-3682-4e43-94b2-37efe31cff2b
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 44b86bd0-bce9-4d6e-a321-26b314b9aeb1
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column regiao
+		dataType: string
+		lineageTag: 52b3a14c-07e2-4f1a-bf11-1215681f8309
+		summarizeBy: none
+		sourceColumn: regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria_cnh
+		dataType: string
+		lineageTag: 9a467d64-05aa-4b1d-8dc9-a69d261b11b7
+		summarizeBy: none
+		sourceColumn: categoria_cnh
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_admissao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 15ba239c-48f5-40b9-8bb5-b9a156488f56
+		summarizeBy: none
+		sourceColumn: data_admissao
+
+		variation Variation
+			isDefault
+			relationship: e457590e-a9e0-4d7e-8faa-52ee2b0b11e5
+			defaultHierarchy: LocalDateTable_c8f2d441-f5c8-4e64-9228-c3acb5dc9379.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_motorista = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_motorista_Table = gold_Schema{[Name="dim_motorista",Kind="Table"]}[Data]
+				in
+				    dim_motorista_Table
+

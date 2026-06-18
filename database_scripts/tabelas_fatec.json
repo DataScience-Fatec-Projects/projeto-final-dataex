@@ -1,0 +1,11 @@
+{
+   "tabelas":[
+      "Cliente",
+      "CentroDistribuicao",
+      "Veiculo",
+      "Motorista",
+      "Rota",
+      "TipoCarga",
+      "Entrega"
+   ]
+}

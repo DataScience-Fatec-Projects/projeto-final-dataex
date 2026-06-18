@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "FatecLog"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3e05fae1-db3d-4c76-a354-02d9ce9879d6"
+  }
+}

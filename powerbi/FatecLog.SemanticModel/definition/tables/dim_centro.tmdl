@@ -1,0 +1,73 @@
+table dim_centro
+	lineageTag: 8a1e05ae-fa0d-49c2-b10b-dc029b1bd651
+
+	column sk_centro
+		dataType: int64
+		formatString: 0
+		lineageTag: 7776dfec-5818-48b0-a1b2-e7baa13884b8
+		summarizeBy: none
+		sourceColumn: sk_centro
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_centro_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: cdf232b5-01c8-412d-8adc-0262e7e2e67a
+		summarizeBy: none
+		sourceColumn: id_centro_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_centro
+		dataType: string
+		lineageTag: b607bc0a-c1be-4896-b071-e8b64aa0cb82
+		summarizeBy: none
+		sourceColumn: nome_centro
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: d841b575-6a70-4bcc-8f43-959bb2272f7a
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 56222382-8f32-477c-af91-eb8e5cfdceb1
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column regiao
+		dataType: string
+		lineageTag: 8e8d4142-a092-4d1a-bd96-1bbc67489964
+		summarizeBy: none
+		sourceColumn: regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacidade_operacional
+		dataType: int64
+		formatString: 0
+		lineageTag: 845a13a9-84be-47b3-9fd9-1a426f730aa1
+		summarizeBy: none
+		sourceColumn: capacidade_operacional
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_centro = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_centro_Table = gold_Schema{[Name="dim_centro",Kind="Table"]}[Data]
+				in
+				    dim_centro_Table
+

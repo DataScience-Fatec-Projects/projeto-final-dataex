@@ -1,0 +1,88 @@
+table dim_cliente
+	lineageTag: 0055a0b9-8885-468a-89bc-8d0689588d33
+
+	column sk_cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: 51e31ef3-8393-4637-89d1-ba328c697c1f
+		summarizeBy: none
+		sourceColumn: sk_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: cd171cbd-f566-493a-a3cd-0d881a27a4bc
+		summarizeBy: sum
+		sourceColumn: id_cliente_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_cliente
+		dataType: string
+		lineageTag: 05e63c59-9e79-4dd5-b199-656ab2e29368
+		summarizeBy: none
+		sourceColumn: nome_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column segmento
+		dataType: string
+		lineageTag: d2b0ee37-5467-4587-b591-cb0f1464b24d
+		summarizeBy: none
+		sourceColumn: segmento
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: e5136b4d-0afc-43d3-a49f-69cd829c07d4
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 622ef03c-34cf-4016-8493-b4a582452836
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column regiao
+		dataType: string
+		lineageTag: 21b208ff-749f-44d4-a23d-79dc5c5c8ffb
+		summarizeBy: none
+		sourceColumn: regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_cadastro
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3e648efd-485f-4db0-ad2b-15d48c12bb32
+		summarizeBy: none
+		sourceColumn: data_cadastro
+
+		variation Variation
+			isDefault
+			relationship: 50f9d414-7f3c-4790-bb13-369646acb708
+			defaultHierarchy: LocalDateTable_de6a7627-f842-42a8-bf7c-99b7666163bb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_cliente = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_cliente_Table = gold_Schema{[Name="dim_cliente",Kind="Table"]}[Data]
+				in
+				    dim_cliente_Table
+
