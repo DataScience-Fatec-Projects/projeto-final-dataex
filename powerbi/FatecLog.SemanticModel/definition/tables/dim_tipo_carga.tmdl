@@ -1,0 +1,48 @@
+table dim_tipo_carga
+	lineageTag: 0c9e6f95-9a46-4d4e-8919-d6775d0035dd
+
+	column sk_tipo_carga
+		dataType: int64
+		formatString: 0
+		lineageTag: 27398681-4ecf-4268-924b-7e167b4e373e
+		summarizeBy: none
+		sourceColumn: sk_tipo_carga
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_carga_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: 72f5e4a7-f978-4b63-b591-f17854d4448d
+		summarizeBy: none
+		sourceColumn: id_tipo_carga_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_tipo_carga
+		dataType: string
+		lineageTag: ae05c63b-038e-4071-8cfd-1e98520ae079
+		summarizeBy: none
+		sourceColumn: descricao_tipo_carga
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 24a3568e-8ab5-4e8f-89f6-5727507e1727
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_tipo_carga = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_tipo_carga_Table = gold_Schema{[Name="dim_tipo_carga",Kind="Table"]}[Data]
+				in
+				    dim_tipo_carga_Table
+

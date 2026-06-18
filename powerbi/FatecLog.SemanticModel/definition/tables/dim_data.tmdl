@@ -1,0 +1,118 @@
+table dim_data
+	lineageTag: 796fb846-a370-459d-8c3e-9754878ce36a
+
+	column sk_data
+		dataType: int64
+		formatString: 0
+		lineageTag: 0eafc12e-3ec3-431b-8a1d-32c869998804
+		summarizeBy: sum
+		sourceColumn: sk_data
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_completa
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b3ded0d3-b58e-4308-8df5-d2effbb5cc4f
+		summarizeBy: none
+		sourceColumn: data_completa
+
+		variation Variation
+			isDefault
+			relationship: a47e60aa-5e9b-437f-a83d-1ab5cefc5bc0
+			defaultHierarchy: LocalDateTable_90d46b0c-d7ec-438c-969d-7cb25511b389.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dia
+		dataType: int64
+		formatString: 0
+		lineageTag: b92553ac-e99e-4987-9338-0bb909f7b261
+		summarizeBy: sum
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_dia_semana
+		dataType: string
+		lineageTag: 6f0201bf-935a-4bad-b3db-0c967653e6f8
+		summarizeBy: none
+		sourceColumn: nome_dia_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column semana_ano
+		dataType: int64
+		formatString: 0
+		lineageTag: d2a2d1da-0487-4a4f-a876-2bcc79de40fc
+		summarizeBy: sum
+		sourceColumn: semana_ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 78df55ec-fd77-4f50-9929-b06acd7229a9
+		summarizeBy: sum
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes
+		dataType: string
+		lineageTag: 31e347bf-7e78-4fae-82bb-01932578a050
+		summarizeBy: none
+		sourceColumn: nome_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 570b557a-8d50-4f63-9e0c-f39995d37e10
+		summarizeBy: sum
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column semestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 68239b9e-568a-47b6-98e4-f2eac607fbb3
+		summarizeBy: sum
+		sourceColumn: semestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 68ffd0af-7c62-4e38-9756-bfa8001e89c1
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column fim_semana
+		dataType: int64
+		formatString: 0
+		lineageTag: 76712794-2c93-40a5-be4c-30efc2020ace
+		summarizeBy: sum
+		sourceColumn: fim_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_data = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_data_Table = gold_Schema{[Name="dim_data",Kind="Table"]}[Data]
+				in
+				    dim_data_Table
+

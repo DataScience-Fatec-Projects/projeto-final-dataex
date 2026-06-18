@@ -1,0 +1,90 @@
+table dim_veiculo
+	lineageTag: 1e6f5259-22a4-4481-b9f5-50aacf42c53d
+
+	column sk_veiculo
+		dataType: int64
+		formatString: 0
+		lineageTag: d5d317b0-2a3b-4a5d-8b9e-d7ef95fabc4e
+		summarizeBy: none
+		sourceColumn: sk_veiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_veiculo_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ac86aec-d0b2-43d0-9f68-27199b0d81d1
+		summarizeBy: none
+		sourceColumn: id_veiculo_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column placa
+		dataType: string
+		lineageTag: 25759c85-bd0a-4b8f-9ee5-34e57e4e05b5
+		summarizeBy: none
+		sourceColumn: placa
+
+		annotation SummarizationSetBy = Automatic
+
+	column modelo
+		dataType: string
+		lineageTag: e69bb7fa-252e-4068-adf7-faa8a6a48899
+		summarizeBy: none
+		sourceColumn: modelo
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_veiculo
+		dataType: string
+		lineageTag: e0f5087b-9bbb-4506-99d4-c674b4bc0cfb
+		summarizeBy: none
+		sourceColumn: tipo_veiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacidade_kg
+		dataType: int64
+		formatString: 0
+		lineageTag: aa1d7ee4-93ea-4296-87e3-6a5fca22548c
+		summarizeBy: none
+		sourceColumn: capacidade_kg
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_capacidade
+		dataType: string
+		lineageTag: 7b41e046-5ae7-4798-a28f-5fddbfa55389
+		summarizeBy: none
+		sourceColumn: faixa_capacidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_fabricacao
+		dataType: int64
+		formatString: 0
+		lineageTag: af5256cf-0447-46eb-a6be-bd1815d6af36
+		summarizeBy: none
+		sourceColumn: ano_fabricacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_veiculo
+		dataType: string
+		lineageTag: f5e9abc4-0947-452c-820c-d9210538b17b
+		summarizeBy: none
+		sourceColumn: status_veiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_veiculo = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_veiculo_Table = gold_Schema{[Name="dim_veiculo",Kind="Table"]}[Data]
+				in
+				    dim_veiculo_Table
+

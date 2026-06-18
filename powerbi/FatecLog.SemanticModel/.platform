@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "FatecLog"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9d5140a5-e5a3-4d23-93f1-6f9b7f27d085"
+  }
+}

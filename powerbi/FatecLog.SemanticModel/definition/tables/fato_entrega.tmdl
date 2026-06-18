@@ -1,0 +1,218 @@
+table fato_entrega
+	lineageTag: 9ba30d12-3590-4273-ba07-96a1427c3899
+
+	column sk_cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: f7519585-1b47-459e-972f-cda83d7ec28c
+		summarizeBy: none
+		sourceColumn: sk_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_centro
+		dataType: int64
+		formatString: 0
+		lineageTag: 132d2719-1ec9-4b23-80eb-ceac5963dd99
+		summarizeBy: none
+		sourceColumn: sk_centro
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_veiculo
+		dataType: int64
+		formatString: 0
+		lineageTag: c0fa9b51-2da0-4395-96ad-48c6b9f13064
+		summarizeBy: none
+		sourceColumn: sk_veiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_motorista
+		dataType: int64
+		formatString: 0
+		lineageTag: 5fc065da-7be3-455b-bf10-b95c41be2e3b
+		summarizeBy: none
+		sourceColumn: sk_motorista
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_rota
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ecadb5e-6e93-4cac-86c6-d98b66280cd3
+		summarizeBy: none
+		sourceColumn: sk_rota
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_tipo_carga
+		dataType: int64
+		formatString: 0
+		lineageTag: 85b4a392-c10a-4df8-b665-b75a57ce89c9
+		summarizeBy: none
+		sourceColumn: sk_tipo_carga
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_data_saida
+		dataType: int64
+		formatString: 0
+		lineageTag: 8915f593-66f3-4dcd-9261-525f30a62ef5
+		summarizeBy: sum
+		sourceColumn: sk_data_saida
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_data_entrega
+		dataType: int64
+		formatString: 0
+		lineageTag: 36866c25-d6ad-4291-a4a8-9f62404b7d7c
+		summarizeBy: sum
+		sourceColumn: sk_data_entrega
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_entrega_origem
+		dataType: int64
+		formatString: 0
+		lineageTag: 053fefdb-458b-48cb-bcfb-92a5b7e05e4d
+		summarizeBy: sum
+		sourceColumn: id_entrega_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_entrega
+		dataType: string
+		lineageTag: c2060d2a-860e-4d25-bb08-6e7d1ddd9119
+		summarizeBy: none
+		sourceColumn: status_entrega
+
+		annotation SummarizationSetBy = Automatic
+
+	column peso_carga_kg
+		dataType: double
+		lineageTag: 67561f17-4c4a-4df6-87d9-490ff2f458aa
+		summarizeBy: sum
+		sourceColumn: peso_carga_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quantidade_volumes
+		dataType: int64
+		formatString: 0
+		lineageTag: a01281ee-ac61-4260-8080-fc11e1db30c9
+		summarizeBy: sum
+		sourceColumn: quantidade_volumes
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_frete
+		dataType: double
+		lineageTag: 6a4bfbee-15fa-47bc-a4c2-46a52f7ae285
+		summarizeBy: sum
+		sourceColumn: valor_frete
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column custo_combustivel
+		dataType: double
+		lineageTag: 73dbe549-0b0f-40f4-a1c2-215239651e9f
+		summarizeBy: sum
+		sourceColumn: custo_combustivel
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column margem_frete
+		dataType: double
+		lineageTag: e0f854e2-64d1-4f0e-863a-df7660df87e9
+		summarizeBy: sum
+		sourceColumn: margem_frete
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column distancia_km
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b182dfe-886b-4eaa-833d-8f3b05a750c8
+		summarizeBy: sum
+		sourceColumn: distancia_km
+
+		annotation SummarizationSetBy = Automatic
+
+	column custo_por_km
+		dataType: double
+		lineageTag: 3a4965e4-4618-4c72-91a8-11f82af1ef94
+		summarizeBy: sum
+		sourceColumn: custo_por_km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tempo_estimado_horas
+		dataType: int64
+		formatString: 0
+		lineageTag: e7a332f8-ac6f-4bd3-b22a-9b30d3204bc1
+		summarizeBy: sum
+		sourceColumn: tempo_estimado_horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column tempo_real_horas
+		dataType: int64
+		formatString: 0
+		lineageTag: 6861bf36-65c4-4f77-8186-73b6c5672871
+		summarizeBy: sum
+		sourceColumn: tempo_real_horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column atraso_horas
+		dataType: int64
+		formatString: 0
+		lineageTag: 55e5b514-f54d-4735-8d11-c9fee1bdaec5
+		summarizeBy: sum
+		sourceColumn: atraso_horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column avaria
+		dataType: int64
+		formatString: 0
+		lineageTag: 03ff49af-e139-402f-8934-9f0e73eafaab
+		summarizeBy: sum
+		sourceColumn: avaria
+
+		annotation SummarizationSetBy = Automatic
+
+	column entrega_no_prazo
+		dataType: int64
+		formatString: 0
+		lineageTag: 75ea45bb-7909-4777-956b-b34611e17f47
+		summarizeBy: sum
+		sourceColumn: entrega_no_prazo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fato_entrega = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("adb-7405612629011628.8.azuredatabricks.net", "/sql/1.0/warehouses/45dc9fef308aad64", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    adb_fatec_log_Database = Fonte{[Name="adb_fatec_log",Kind="Database"]}[Data],
+				    gold_Schema = adb_fatec_log_Database{[Name="gold",Kind="Schema"]}[Data],
+				    fato_entrega_Table = gold_Schema{[Name="fato_entrega",Kind="Table"]}[Data]
+				in
+				    fato_entrega_Table
+
+	annotation PBI_ResultType = Table
+
