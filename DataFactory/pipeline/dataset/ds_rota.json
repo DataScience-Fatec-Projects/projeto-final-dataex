@@ -1,0 +1,44 @@
+{
+	"name": "ds_rota",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_fatec_log",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id_rota",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cidade_origem",
+				"type": "varchar"
+			},
+			{
+				"name": "estado_origem",
+				"type": "char"
+			},
+			{
+				"name": "cidade_destino",
+				"type": "varchar"
+			},
+			{
+				"name": "estado_destino",
+				"type": "char"
+			},
+			{
+				"name": "distancia_km",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Rota"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

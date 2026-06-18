@@ -1,0 +1,31 @@
+{
+	"name": "ds_tabelas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake_fatec_log",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "tabelas_fatec.json",
+				"folderPath": "config",
+				"fileSystem": "landing"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"tabelas": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

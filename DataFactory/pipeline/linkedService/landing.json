@@ -1,0 +1,11 @@
+{
+	"name": "landing",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://safateclog.dfs.core.windows.net/"
+		}
+	}
+}

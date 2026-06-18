@@ -1,0 +1,15 @@
+{
+	"name": "adf-fatec-log",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1e8d36c7-59a3-40fc-af87-6c924aca595b",
+		"tenantId": "eabe64c5-68f5-4a76-8301-9577a679e449"
+	}
+}
